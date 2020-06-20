@@ -6,8 +6,10 @@ import 'package:covid19tracker/screens/details.dart';
 import 'package:covid19tracker/screens/indian_statistics.dart';
 import 'package:covid19tracker/utilities/app_style.dart';
 import 'package:covid19tracker/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -61,13 +63,18 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: <Widget>[
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Spacer(),
-                        Icon(Icons.timer, color: AppStyle.txg),
-                        SizedBox(width: 2),
+                        Text(
+                          'Last Updated On',
+                          style: TextStyle(color: Colors.white, fontSize: 13.6),
+                        ),
                         Text(f.format(home?.lastUpdate),
                             style: TextStyle(color: AppStyle.txg)),
                       ],
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -141,12 +148,43 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    titleWidget('Confirmed',
-                        nf.format(home?.confirmed?.value) ?? '', AppStyle.txw),
-                    titleWidget('Recovered',
-                        nf.format(home?.recovered?.value) ?? '', AppStyle.txg),
-                    titleWidget('Deaths', nf.format(home?.deaths?.value) ?? '',
-                        AppStyle.txr),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.grey.withOpacity(0.2),
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                'World Data',
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontSize: 28.0,
+                                    fontFamily: 'NotoSerif'),
+                              ),
+                            ),
+                            titleWidget(
+                                'Confirmed',
+                                nf.format(home?.confirmed?.value) ?? '',
+                                AppStyle.txw),
+                            titleWidget(
+                                'Recovered',
+                                nf.format(home?.recovered?.value) ?? '',
+                                AppStyle.txg),
+                            titleWidget(
+                                'Deaths',
+                                nf.format(home?.deaths?.value) ?? '',
+                                AppStyle.txr),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               SizedBox(height: 20),
@@ -160,6 +198,8 @@ class _HomePageState extends State<HomePage> {
                         child: Theme(
                           data: ThemeData(canvasColor: AppStyle.bgl),
                           child: DropdownButton(
+                              icon: Icon(Icons.arrow_drop_down,
+                                  color: Colors.white),
                               isExpanded: true,
                               hint: Text(
                                 'Please choose a location',
@@ -225,48 +265,94 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
-              Divider(color: AppStyle.txw),
-              ListTile(
-                title: Text('Daily Cases', style: AppStyle.stdtw),
-                trailing: InkWell(
-                    onTap: () {
-                      DatePicker.showDatePicker(context,
-                          showTitleActions: true,
-                          minTime: DateTime(2020, 1, 1),
-                          maxTime: DateTime(2020, 12, 31), onConfirm: (date) {
-                        setState(() {
-                          datetime = fn.format(date);
-                          Provider.of<DailyProvider>(context, listen: false)
-                              .getDailyProvider(datetime);
-                        });
-                      }, currentTime: DateTime.now());
-                    },
-                    child: Text('Change $datetime',
-                        style: TextStyle(color: AppStyle.txg))),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: 150,
+                  width: double.infinity,
+                  child: Stack(
+                    alignment: Alignment.bottomLeft,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(
+                          // left side padding is 40% of total width
+                          left: MediaQuery.of(context).size.width * .4,
+                          top: 20,
+                          right: 20,
+                        ),
+                        height: 130,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xFF60BE93),
+                              Color(0xFF1B8D59),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          'Contact your doctor                if you experience any symptoms. Dial 102',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.5,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: SvgPicture.asset("assets/images/nurse.svg"),
+                      ),
+                      Positioned(
+                        top: 30,
+                        right: 10,
+                        child: SvgPicture.asset("assets/images/virus.svg"),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              if (daily != null)
-                Column(
-                    children: daily
-                        .map((val) => Card(
-                              color: AppStyle.bgl,
-                              child: Column(
-                                children: <Widget>[
-                                  ListTile(
-                                    title: Text(val?.provinceState ?? '',
-                                        style: AppStyle.stdtw),
-                                    trailing: Text(val.countryRegion ?? '',
-                                        style: AppStyle.stdtw),
-                                  ),
-                                  confirmDetail(
-                                    val?.confirmed?.toString(),
-                                    val?.recovered?.toString(),
-                                    val?.deaths?.toString(),
-                                  )
-                                ],
-                              ),
-                            ))
-                        .toList())
+//              ListTile(
+//                title: Text('Daily Cases', style: AppStyle.stdtw),
+//                trailing: InkWell(
+//                    onTap: () {
+//                      DatePicker.showDatePicker(context,
+//                          showTitleActions: true,
+//                          minTime: DateTime(2020, 1, 1),
+//                          maxTime: DateTime(2020, 12, 31), onConfirm: (date) {
+//                        setState(() {
+//                          datetime = fn.format(date);
+//                          Provider.of<DailyProvider>(context, listen: false)
+//                              .getDailyProvider(datetime);
+//                        });
+//                      }, currentTime: DateTime.now());
+//                    },
+//                    child: Text('Change $datetime',
+//                        style: TextStyle(color: AppStyle.txg))),
+//              ),
+//              if (daily != null)
+//                Column(
+//                    children: daily
+//                        .map((val) => Card(
+//                              color: AppStyle.bgl,
+//                              child: Column(
+//                                children: <Widget>[
+//                                  ListTile(
+//                                    title: Text(val?.provinceState ?? '',
+//                                        style: AppStyle.stdtw),
+//                                    trailing: Text(val.countryRegion ?? '',
+//                                        style: AppStyle.stdtw),
+//                                  ),
+//                                  confirmDetail(
+//                                    val?.confirmed?.toString(),
+//                                    val?.recovered?.toString(),
+//                                    val?.deaths?.toString(),
+//                                  )
+//                                ],
+//                              ),
+//                            ))
+//                        .toList())
             ],
           ),
         ));
