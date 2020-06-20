@@ -1,12 +1,16 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
+// To parse this JSON data, do
+//
+
 List<DailyModel> dailyModelFromJson(String str) =>
     List<DailyModel>.from(json.decode(str).map((x) => DailyModel.fromMap(x)));
 
 String dailyModelToJson(List<DailyModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
+//final dailyModel = dailyModelFromJson(jsonString);
 class DailyModel {
   String provinceState;
   String countryRegion;

@@ -18,9 +18,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DateFormat fn = DateFormat("dd-MM-yyyy");
+  DateFormat fn = DateFormat("M-dd-yyyy");
   String _selectedLocation = "IN";
-  String datetime = '02-14-2020';
+  String datetime = '2-14-2020';
 
   @override
   void initState() {
