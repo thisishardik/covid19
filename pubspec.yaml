@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -28,11 +28,12 @@ dependencies:
   intl: ^0.16.1
   flutter_datetime_picker: ^1.3.5
   url_launcher: ^5.4.2
-  flutter_launcher_icons: "^0.7.3"
   flutter_echarts: ^1.3.0
   line_awesome_flutter: ^1.0.1
   flutter_screenutil: ^1.0.2
   animated_theme_switcher: ^1.0.5
+  google_fonts:
+  page_transition:
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
   assets:
     - assets/images/
     - lib/images/covid19.png
+    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -65,12 +67,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+   - family: AbrilFatface
+     fonts:
+       - asset: assets/fonts/AbrilFatface-Regular.ttf
+   - family: NotoSerif
+     fonts:
+       - asset: assets/fonts/NotoSerif-Regular.ttf
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

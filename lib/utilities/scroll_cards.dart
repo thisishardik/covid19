@@ -34,14 +34,14 @@ class ScrollCards extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
-            margin: EdgeInsets.symmetric(vertical: 100.0, horizontal: 15.0),
+            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
             width: size.width - 100,
             decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(20)),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
@@ -57,35 +57,51 @@ class ScrollCards extends StatelessWidget {
                 ),
                 Text(
                   'Confirmed Cases - Indian',
-                  style: Theme.of(context).textTheme.subtitle,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(fontFamily: 'NotoSerif'),
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
                 Text(
                   dataList[index]['confirmedCasesIndian'].toString(),
-                  style: Theme.of(context).textTheme.headline,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontSize: 30.0, fontFamily: 'AbrilFatface'),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
                   'Confirmed Cases - Foreign',
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(fontFamily: 'NotoSerif'),
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
                 Text(
                   dataList[index]['confirmedCasesForeign'].toString(),
-                  style: Theme.of(context).textTheme.headline,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontSize: 30.0, fontFamily: 'AbrilFatface'),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
                   'Discharged',
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(fontFamily: 'NotoSerif'),
                 ),
                 SizedBox(
                   height: 5.0,
@@ -93,15 +109,19 @@ class ScrollCards extends StatelessWidget {
                 Text(
                   dataList[index]['discharged'].toString(),
                   style: Theme.of(context).textTheme.headline.copyWith(
-                        color: Color(0xff16DE93),
-                      ),
+                      color: Color(0xff16DE93),
+                      fontSize: 30.0,
+                      fontFamily: 'AbrilFatface'),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
                   'Deaths',
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(fontFamily: 'NotoSerif'),
                 ),
                 SizedBox(
                   height: 5.0,
@@ -109,8 +129,9 @@ class ScrollCards extends StatelessWidget {
                 Text(
                   dataList[index]['deaths'].toString(),
                   style: Theme.of(context).textTheme.headline.copyWith(
-                        color: Colors.red,
-                      ),
+                      color: Colors.red,
+                      fontSize: 30.0,
+                      fontFamily: 'AbrilFatface'),
                 ),
               ],
             ),

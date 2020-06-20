@@ -2,12 +2,14 @@ import 'package:covid19tracker/providers/country_provider.dart';
 import 'package:covid19tracker/providers/daily_provider.dart';
 import 'package:covid19tracker/providers/home_provider.dart';
 import 'package:covid19tracker/providers/province_provider.dart';
-import 'package:covid19tracker/screens/about_page.dart';
+import 'package:covid19tracker/screens/details.dart';
 import 'package:covid19tracker/screens/indian_statistics.dart';
 import 'package:covid19tracker/utilities/app_style.dart';
+import 'package:covid19tracker/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,6 +68,78 @@ class _HomePageState extends State<HomePage> {
                         Text(f.format(home?.lastUpdate),
                             style: TextStyle(color: AppStyle.txg)),
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: DetailPage()));
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 140,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFF4B63),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned(
+                                left: -10,
+                                child: Container(
+                                  height: 140,
+                                  child: Image.asset(
+                                    "assets/images/image_1_photos_v2_x2.png",
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Positioned.fill(
+                                left: 120,
+                                top: 10,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Click here to read the FAQ",
+                                        style: appSubTitle,
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              "Be Safe. Be Alert.",
+                                              style: contentWhite,
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                     titleWidget('Confirmed',
                         nf.format(home?.confirmed?.value) ?? '', AppStyle.txw),
@@ -141,11 +215,11 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'View Indian Statistics',
                           style: TextStyle(
-                            color: Color(0xff16DE93),
+                            color: Colors.white,
                             fontSize: 16.0,
                           ),
                         ),
-                        Icon(Icons.arrow_forward, color: Colors.white),
+                        Icon(Icons.arrow_forward, color: Color(0xff16DE93)),
                       ],
                     ),
                   ),

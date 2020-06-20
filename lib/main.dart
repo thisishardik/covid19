@@ -1,3 +1,4 @@
+import 'package:covid19tracker/screens/intro_page.dart';
 import 'package:covid19tracker/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19tracker/providers/country_provider.dart';
@@ -19,10 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Covid19',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-      home: HomePage(),
+      home: IntroPage(),
     );
   }
 }
