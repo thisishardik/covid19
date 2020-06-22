@@ -35,6 +35,9 @@ dependencies:
   google_fonts:
   page_transition:
   flutter_svg: ^0.17.4
+  get_it: ^1.0.3+2
+  showcaseview:
+
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +78,9 @@ flutter:
    - family: NotoSerif
      fonts:
        - asset: assets/fonts/NotoSerif-Regular.ttf
+   - family: Montserrat
+     fonts:
+       - asset: assets/fonts/Montserrat-Regular.ttf
 
   #   - family: Trajan Pro
   #     fonts:

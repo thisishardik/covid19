@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppStyle {
   static Color bg = Color(0xff07213B);
   static Color txw = Color(0xffE5E7E9);
+  static Color txo = Color(0xfff08c55);
   static Color txg = Color(0xff16DE93);
   static Color txr = Color(0xffFB5E5C);
   static Color bgl = Color(0xffF0D3153);

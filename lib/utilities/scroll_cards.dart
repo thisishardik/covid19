@@ -68,10 +68,10 @@ class ScrollCards extends StatelessWidget {
                 ),
                 Text(
                   dataList[index]['confirmedCasesIndian'].toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontSize: 30.0, fontFamily: 'AbrilFatface'),
+                  style: Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 30.0,
+                      fontFamily: 'AbrilFatface',
+                      color: Color(0xfff08c55)),
                 ),
                 SizedBox(
                   height: 15.0,
@@ -88,10 +88,10 @@ class ScrollCards extends StatelessWidget {
                 ),
                 Text(
                   dataList[index]['confirmedCasesForeign'].toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontSize: 30.0, fontFamily: 'AbrilFatface'),
+                  style: Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 30.0,
+                      fontFamily: 'AbrilFatface',
+                      color: Color(0xfff08c55)),
                 ),
                 SizedBox(
                   height: 15.0,
