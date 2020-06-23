@@ -17,6 +17,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:showcaseview/showcase_widget.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -62,12 +63,27 @@ class _HomePageState extends State<HomePage> {
     final String helplineNumber = "1075";
     final String myEmail = "technical.hardik29@gmail.com";
 
+    _launchURL(url) async {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Image.asset('assets/images/covid19.png', height: 20.0),
           elevation: 0.0,
           backgroundColor: AppStyle.bg,
           actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.language, color: Colors.white),
+              onPressed: () {
+                _launchURL('https://www.who.int/');
+              },
+              tooltip: 'Visit the WHO website',
+            ),
             IconButton(
               icon: Icon(Icons.mail, color: Colors.white),
               onPressed: () {
@@ -128,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
-                                'Keep yourself and           your loved ones safe.',
+                                'Keep yourself and your loved ones safe.',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
@@ -258,13 +274,13 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          'View Indian Statistics',
+                          'Detailed Indian Statistics',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.yellow,
                             fontSize: 16.0,
                           ),
                         ),
-                        Icon(Icons.arrow_forward, color: Color(0xff16DE93)),
+                        Icon(Icons.arrow_forward, color: Colors.yellow),
                       ],
                     ),
                   ),
@@ -311,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Click here to read the FAQ",
+                                  "Click Here for FAQ",
                                   style: appSubTitle,
                                 ),
                                 SizedBox(
@@ -324,7 +340,7 @@ class _HomePageState extends State<HomePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Be Safe. Be Alert.",
+                                        "Stay Safe. Stay Alert.",
                                         style: contentWhite,
                                       ),
                                       Icon(

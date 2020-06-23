@@ -33,7 +33,9 @@ class ScrollCards extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.0,
+            ),
             margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
             width: size.width - 100,
             decoration: BoxDecoration(
